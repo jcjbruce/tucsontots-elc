@@ -1,0 +1,227 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+ * TUCSON TOTS EARLY LEARNING CENTER — BRIGHT ACADEMY DESIGN
+ * Design Movement: Joyful Contemporary Educational Branding
+ * Color Philosophy: Deep violet + vibrant teal + hot pink + coral + fresh green
+ *   — Bold color-blocked sections, playful circular shapes, chalk-style headings
+ * Typography: Nunito (display/headings) + Poppins (subheadings) + DM Sans (body)
+ * Layout: Color-blocked alternating sections, circular decorative shapes, asymmetric splits
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Brand Colors — vibrant, child-friendly palette */
+  --violet: oklch(0.38 0.18 295);        /* Deep violet */
+  --violet-light: oklch(0.52 0.16 295);  /* Medium violet */
+  --violet-pale: oklch(0.97 0.02 295);   /* Very light lavender bg */
+  --amber: oklch(0.78 0.16 65);          /* Warm amber/gold */
+  --amber-dark: oklch(0.65 0.16 65);     /* Darker amber */
+  --teal: oklch(0.65 0.13 195);          /* Fresh teal */
+  --teal-bright: oklch(0.72 0.15 195);   /* Bright teal (original site) */
+  --teal-dark: oklch(0.50 0.13 195);     /* Darker teal */
+  --pink: oklch(0.62 0.22 355);          /* Hot pink/magenta (original site) */
+  --pink-light: oklch(0.75 0.16 355);    /* Light pink */
+  --coral: oklch(0.65 0.18 25);          /* Coral/orange */
+  --coral-light: oklch(0.75 0.14 25);    /* Light coral */
+  --green-fresh: oklch(0.62 0.15 145);   /* Fresh green */
+  --green-bright: oklch(0.68 0.17 145);  /* Bright green */
+
+  /* Semantic tokens */
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.20 0.01 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.01 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.01 270);
+  --primary: oklch(0.38 0.18 295);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.02 295);
+  --secondary-foreground: oklch(0.38 0.18 295);
+  --muted: oklch(0.96 0.01 270);
+  --muted-foreground: oklch(0.55 0.03 270);
+  --accent: oklch(0.78 0.16 65);
+  --accent-foreground: oklch(0.20 0.01 270);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.01 270);
+  --input: oklch(0.92 0.01 270);
+  --ring: oklch(0.38 0.18 295);
+}
+
+@keyframes bounce-letter {
+  0% { transform: translateY(0px) rotate(-2deg); }
+  100% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+  }
+  h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ── Playful heading underline decorator ── */
+  .section-title-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .section-title-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  /* ── Decorative floating circles ── */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ── Blob shape for images ── */
+  .blob-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  /* ── Animated entrance ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Badge pill ── */
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* ── Color-block section with angled bottom edge ── */
+  .angled-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    padding-bottom: 6rem;
+    margin-bottom: -2rem;
+  }
+  .angled-top {
+    clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+    padding-top: 6rem;
+    margin-top: -2rem;
+  }
+
+  /* ── Stat semicircle ── */
+  .stat-arc {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    overflow: hidden;
+  }
+  .stat-arc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 10px solid currentColor;
+    opacity: 0.25;
+  }
+}
