@@ -176,11 +176,11 @@ export default function Programs() {
                       </span>
                     </div>
                     <Link
-                      href="/enrollment"
+                      href="/contact"
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold transition-all hover:scale-105"
                       style={{ backgroundColor: program.color, fontFamily: "'Nunito', sans-serif" }}
                     >
-                      Enroll in This Program <ArrowRight className="w-4 h-4" />
+                      Get Started <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
 
@@ -270,11 +270,11 @@ export default function Programs() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/enrollment"
+              href="/contact"
               className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-white font-bold transition-all hover:scale-105"
               style={{ color: "oklch(0.65 0.13 195)", fontFamily: "'Nunito', sans-serif" }}
             >
-              Enroll Now <ArrowRight className="w-5 h-5" />
+              Get Started <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"

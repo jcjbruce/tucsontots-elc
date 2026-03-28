@@ -245,7 +245,7 @@ export default function About() {
             We'd love to show you around and answer all your questions.
           </p>
           <Link
-            href="/enrollment"
+            href="/contact"
             className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold text-base transition-all hover:scale-105"
             style={{
               backgroundColor: "oklch(0.65 0.18 25)",
