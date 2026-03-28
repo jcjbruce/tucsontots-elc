@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import { CheckCircle2, ArrowRight, Clock, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { trpc } from "@/lib/trpc";
 
 export default function Enrollment() {
   const [form, setForm] = useState({
@@ -22,30 +21,40 @@ export default function Enrollment() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => {
-      toast.success("Thank you! We'll be in touch within 24 hours to schedule your tour.");
-      setSubmitted(true);
-      setForm({ parentName: "", email: "", phone: "", childName: "", childAge: "", program: "", startDate: "", message: "" });
-    },
-    onError: () => {
-      toast.error("Something went wrong. Please try again or email us directly.");
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitMutation.mutate({
-      formType: "enrollment",
-      name: form.parentName,
-      email: form.email,
-      phone: form.phone || undefined,
-      childName: form.childName || undefined,
-      childAge: form.childAge || undefined,
-      startDate: form.startDate || undefined,
-      message: `Program Interest: ${form.program || "Not specified"}${form.message ? `\n\n${form.message}` : ""}`,
-    });
+    setSending(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "f642c143-997e-4d9e-9be2-7b9917152700",
+          subject: `[Tucson Tots] Enrollment Inquiry from ${form.parentName}`,
+          name: form.parentName,
+          email: form.email,
+          phone: form.phone || "N/A",
+          child_name: form.childName || "N/A",
+          child_age: form.childAge || "N/A",
+          program_interest: form.program || "Not specified",
+          preferred_start_date: form.startDate || "N/A",
+          message: form.message || "N/A",
+        }),
+      });
+      if (res.ok) {
+        toast.success("Thank you! We'll be in touch within 24–48 hours to schedule your tour.");
+        setSubmitted(true);
+        setForm({ parentName: "", email: "", phone: "", childName: "", childAge: "", program: "", startDate: "", message: "" });
+      } else {
+        toast.error("Something went wrong. Please try again or email us directly.");
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -91,7 +100,7 @@ export default function Enrollment() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               { step: "01", title: "Submit Inquiry", desc: "Fill out the form below with your family's information and program interest.", color: "oklch(0.38 0.18 295)" },
-              { step: "02", title: "Schedule a Tour", desc: "We'll reach out within 24 hours to schedule a personal tour of our center.", color: "oklch(0.65 0.18 25)" },
+              { step: "02", title: "Schedule a Tour", desc: "We'll reach out within 24–48 hours to schedule a personal tour of our center.", color: "oklch(0.65 0.18 25)" },
               { step: "03", title: "Meet the Team", desc: "Visit us, meet our educators, and see the learning environment firsthand.", color: "oklch(0.65 0.13 195)" },
               { step: "04", title: "Enroll & Start", desc: "Complete enrollment paperwork and get ready for your child's first day!", color: "oklch(0.62 0.15 145)" },
             ].map(({ step, title, desc, color }) => (
@@ -228,7 +237,7 @@ export default function Enrollment() {
                     Inquiry Received!
                   </h3>
                   <p className="text-gray-600 text-sm mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    Thank you! We'll be in touch within 24 hours to schedule your tour.
+                    Thank you! We'll be in touch within 24–48 hours to schedule your tour.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -376,11 +385,11 @@ export default function Enrollment() {
                 </div>
                 <button
                   type="submit"
-                  disabled={submitMutation.isPending}
+                  disabled={sending}
                   className="w-full py-3.5 rounded-xl text-white font-bold text-base transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   style={{ backgroundColor: "oklch(0.65 0.18 25)", fontFamily: "'Nunito', sans-serif" }}
                 >
-                  {submitMutation.isPending ? (
+                  {sending ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                       Submitting...
@@ -396,7 +405,7 @@ export default function Enrollment() {
                   className="text-xs text-center text-gray-500"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  We'll respond within 24 hours to schedule your tour.
+                  We'll respond within 24–48 hours to schedule your tour.
                 </p>
               </form>
               )}

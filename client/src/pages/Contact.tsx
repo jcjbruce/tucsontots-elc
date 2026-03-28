@@ -1,7 +1,7 @@
 /*
  * TUCSON TOTS ELC — CONTACT PAGE
  * Fixes: Increased hero top padding, responsive grid improvements
- * Feature: Contact form wired to tRPC backend (saves to DB + notifies owner)
+ * Feature: Contact form wired to Web3Forms (sends email notification to owner)
  */
 
 import Navbar from "@/components/Navbar";
