@@ -25,15 +25,16 @@ export default function Contact() {
     e.preventDefault();
     setSending(true);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/info@civicfirm.com", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          _subject: `[Tucson Tots] ${form.subject || "General"} from ${form.name}`,
+          access_key: "f642c143-997e-4d9e-9be2-7b9917152700",
+          subject: `[Tucson Tots] ${form.subject || "General"} from ${form.name}`,
           name: form.name,
           email: form.email,
           phone: form.phone || "N/A",
-          subject: form.subject || "General",
+          topic: form.subject || "General",
           message: form.message,
         }),
       });
