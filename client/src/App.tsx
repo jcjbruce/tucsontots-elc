@@ -8,17 +8,14 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Programs from "./pages/Programs";
 import Nutrition from "./pages/Nutrition";
-import Enrollment from "./pages/Enrollment";
 import Contact from "./pages/Contact";
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/about"} component={About} />
       <Route path={"/programs"} component={Programs} />
       <Route path={"/nutrition"} component={Nutrition} />
-      <Route path={"/enrollment"} component={Enrollment} />
       <Route path={"/contact"} component={Contact} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />

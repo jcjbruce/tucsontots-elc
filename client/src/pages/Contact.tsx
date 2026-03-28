@@ -39,7 +39,7 @@ export default function Contact() {
         }),
       });
       if (res.ok) {
-        toast.success("Message sent! We'll get back to you within 24 hours.");
+        toast.success("Message sent! We'll get back to you within 24–48 hours.");
         setSubmitted(true);
         setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
@@ -144,27 +144,20 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Quick actions */}
+              {/* Quick info */}
               <div className="rounded-2xl p-6" style={{ backgroundColor: "oklch(0.97 0.02 295)" }}>
                 <h3
                   className="font-bold mb-4"
                   style={{ fontFamily: "'Nunito', sans-serif", color: "oklch(0.25 0.15 295)" }}
                 >
-                  Ready to Enroll?
+                  Interested in Enrolling?
                 </h3>
                 <p
-                  className="text-sm text-gray-600 mb-4"
+                  className="text-sm text-gray-600"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  Schedule a tour and see our center firsthand. We'd love to meet your family.
+                  Select "Enrollment Inquiry" or "Schedule a Tour" from the subject dropdown and we'll get back to you within 24–48 hours.
                 </p>
-                <a
-                  href="/enrollment"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-white font-bold text-sm transition-all hover:scale-105"
-                  style={{ backgroundColor: "oklch(0.65 0.18 25)", fontFamily: "'Nunito', sans-serif" }}
-                >
-                  Schedule a Tour <ArrowRight className="w-4 h-4" />
-                </a>
               </div>
             </div>
 
@@ -190,7 +183,7 @@ export default function Contact() {
                     Message Received!
                   </h3>
                   <p className="text-gray-600 text-sm mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                    Thank you for reaching out. We'll get back to you within 24 hours.
+                    Thank you for reaching out. We'll get back to you within 24–48 hours.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}

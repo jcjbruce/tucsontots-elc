@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/programs", label: "Programs" },
   { href: "/nutrition", label: "Nutrition" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -90,14 +89,14 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/enrollment"
+              href="/contact"
               className="ml-3 px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
               style={{
                 backgroundColor: "oklch(0.65 0.18 25)",
                 fontFamily: "'Poppins', sans-serif",
               }}
             >
-              Enroll Now
+              Get Started
             </Link>
           </nav>
 
@@ -134,14 +133,14 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/enrollment"
+              href="/contact"
               className="mt-2 px-5 py-3 rounded-xl text-sm font-bold text-white text-center"
               style={{
                 backgroundColor: "oklch(0.65 0.18 25)",
                 fontFamily: "'Poppins', sans-serif",
               }}
             >
-              Enroll Now
+              Get Started
             </Link>
           </div>
         </div>

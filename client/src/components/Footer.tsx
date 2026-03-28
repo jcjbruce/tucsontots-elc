@@ -83,7 +83,7 @@ export default function Footer() {
                 { href: "/about", label: "About Us" },
                 { href: "/programs", label: "Our Programs" },
                 { href: "/nutrition", label: "Nutrition" },
-                { href: "/enrollment", label: "Enrollment" },
+                { href: "/contact", label: "Contact" },
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
@@ -175,7 +175,7 @@ export default function Footer() {
 
             <div className="mt-6">
               <Link
-                href="/enrollment"
+                href="/contact"
                 className="inline-block px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:scale-105"
                 style={{
                   backgroundColor: "oklch(0.65 0.18 25)",

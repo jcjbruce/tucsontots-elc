@@ -534,7 +534,7 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                   <Link
-                    href="/enrollment"
+                    href="/contact"
                     className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl text-white font-bold text-base shadow-xl hover:shadow-2xl transition-all hover:scale-105"
                     style={{
                       backgroundColor: "oklch(0.65 0.18 25)",
@@ -1070,7 +1070,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/enrollment"
+              href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-base shadow-xl hover:shadow-2xl transition-all hover:scale-105"
               style={{ backgroundColor: "oklch(0.38 0.18 295)", fontFamily: "'DM Sans', sans-serif" }}
             >
@@ -1149,7 +1149,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/enrollment"
+              href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white font-bold text-base shadow-xl hover:shadow-2xl transition-all hover:scale-105"
               style={{ color: "oklch(0.65 0.18 25)", fontFamily: "'DM Sans', sans-serif" }}
             >
