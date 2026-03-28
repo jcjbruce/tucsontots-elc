@@ -43,10 +43,10 @@ export default function Contact() {
         setSubmitted(true);
         setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
-        toast.error("Something went wrong. Please try again or email us directly.");
+        toast.error("Something went wrong. Please try again.");
       }
     } catch {
-      toast.error("Something went wrong. Please try again or email us directly.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setSending(false);
     }
@@ -103,8 +103,8 @@ export default function Contact() {
                   },
                   {
                     icon: Mail,
-                    title: "Email",
-                    lines: ["hello@tucsontots.com"],
+                    title: "Contact",
+                    lines: ["Use the form on this page to reach us"],
                     color: "oklch(0.65 0.18 25)",
                     bg: "oklch(0.97 0.04 25)",
                   },

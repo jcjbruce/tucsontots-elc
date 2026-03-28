@@ -163,13 +163,13 @@ export default function Footer() {
                   className="w-4 h-4 flex-shrink-0"
                   style={{ color: "oklch(0.65 0.18 25)" }}
                 />
-                <a
-                  href="mailto:hello@tucsontots.com"
+                <Link
+                  href="/contact"
                   className="text-sm transition-colors hover:text-white"
                   style={{ color: "oklch(0.75 0.03 295)", fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  hello@tucsontots.com
-                </a>
+                  Contact Us
+                </Link>
               </li>
             </ul>
 
