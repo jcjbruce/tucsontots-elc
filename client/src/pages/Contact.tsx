@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import { MapPin, Mail, Clock, ArrowRight, Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { trpc } from "@/lib/trpc";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -20,28 +19,36 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const submitMutation = trpc.contact.submit.useMutation({
-    onSuccess: () => {
-      toast.success("Message sent! We'll get back to you within 24 hours.");
-      setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", subject: "", message: "" });
-    },
-    onError: (err) => {
-      toast.error("Something went wrong. Please try again or email us directly.");
-      console.error(err);
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitMutation.mutate({
-      formType: "contact",
-      name: form.name,
-      email: form.email,
-      phone: form.phone || undefined,
-      message: `Subject: ${form.subject || "General"}\n\n${form.message}`,
-    });
+    setSending(true);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/info@civicfirm.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `[Tucson Tots] ${form.subject || "General"} from ${form.name}`,
+          name: form.name,
+          email: form.email,
+          phone: form.phone || "N/A",
+          subject: form.subject || "General",
+          message: form.message,
+        }),
+      });
+      if (res.ok) {
+        toast.success("Message sent! We'll get back to you within 24 hours.");
+        setSubmitted(true);
+        setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        toast.error("Something went wrong. Please try again or email us directly.");
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -287,11 +294,11 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    disabled={submitMutation.isPending}
+                    disabled={sending}
                     className="w-full py-3.5 rounded-xl text-white font-bold text-base transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     style={{ backgroundColor: "oklch(0.38 0.18 295)", fontFamily: "'Nunito', sans-serif" }}
                   >
-                    {submitMutation.isPending ? (
+                    {sending ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                         Sending...
