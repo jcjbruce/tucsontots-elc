@@ -84,7 +84,6 @@ export default function Footer() {
                 { href: "/programs", label: "Our Programs" },
                 { href: "/nutrition", label: "Nutrition" },
                 { href: "/contact", label: "Contact" },
-                { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
