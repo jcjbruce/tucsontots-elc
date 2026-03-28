@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/programs", label: "Programs" },
   { href: "/nutrition", label: "Nutrition" },
-  { href: "/enrollment", label: "Enrollment" },
   { href: "/contact", label: "Contact" },
 ];
 
